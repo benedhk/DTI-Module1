@@ -27,7 +27,7 @@ public class Main {
             case 1: //1. Write a program to calculate the sum of digits in a given number.
                 System.out.print("Enter a number: ");
                 int number = scanner.nextInt();
-                int digitSum = Day3.DigitSumCalculator.calculateDigitSum(number);
+                int digitSum = DigitSumCalculator.calculateDigitSum(number);
                 System.out.println("Sum of digits: " + digitSum);
                 break;
             case 2:
