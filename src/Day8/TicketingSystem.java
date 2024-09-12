@@ -1,7 +1,6 @@
 package Day8;
-
 import java.time.LocalDate;
-import java.util.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.List;
 
@@ -21,15 +20,15 @@ public class TicketingSystem {
         Customer customer = new Customer(customerName, contactInfo);
 
         // Main menu
-        int choice;
-        do {
+        boolean showMenu = true;
+        while (showMenu) {
             System.out.println("1. Choose event");
             System.out.println("2. Confirm booking");
             System.out.println("3. List booked tickets");
             System.out.println("4. Exit");
             System.out.print("Enter your choice: ");
 
-            choice = scanner.nextInt();
+            int choice = scanner.nextInt();
             scanner.nextLine(); // Consume the newline character
 
             switch (choice) {
@@ -111,11 +110,12 @@ public class TicketingSystem {
                     break;
                 case 4:
                     System.out.println("Exiting...");
+                    showMenu = false; // Exit the loop
                     break;
                 default:
                     System.out.println("Invalid choice. Please try again.");
             }
-        } while (choice != 4);
+        }
     }
 
     // Helper methods
