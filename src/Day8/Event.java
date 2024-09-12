@@ -1,6 +1,8 @@
 package Day8;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Event {
     private static int nextEventId = 1;
@@ -10,14 +12,18 @@ public class Event {
     private Venue venue;
     private int totalTickets;
     private int availableTickets;
+    private double ticketPrice;
+    private List<Ticket> tickets;
 
-    public Event(String name, LocalDate eventDate, Venue venue, int totalTickets) {
+    public Event(String name, LocalDate eventDate, Venue venue, int totalTickets, double ticketPrice) {
         this.eventId = nextEventId++;
         this.name = name;
         this.eventDate = eventDate;
         this.venue = venue;
         this.totalTickets = totalTickets;
         this.availableTickets = totalTickets;
+        this.ticketPrice = ticketPrice;
+        this.tickets = new ArrayList<>(); // Initialize the tickets list
     }
 
     // Getters and setters
@@ -45,11 +51,19 @@ public class Event {
         return availableTickets;
     }
 
+    public double getTicketPrice() {
+        return ticketPrice;
+    }
+
+    public List<Ticket> getTickets() {
+        return tickets;
+    }
+
     public Ticket bookTicket() {
         if (availableTickets > 0) {
             availableTickets--;
-            Ticket ticket = new Ticket(this.name, this.eventDate);
-            // No need to set eventId in Ticket
+            Ticket ticket = new Ticket(this, ticketPrice);
+            tickets.add(ticket); // Add the ticket to the event's list
             return ticket;
         } else {
             System.out.println("No available tickets for this event.");

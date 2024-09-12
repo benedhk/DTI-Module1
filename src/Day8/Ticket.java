@@ -1,21 +1,20 @@
 package Day8;
 
-import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Ticket {
     private static int nextTicketId = 1;
     private int ticketId;
-    private String eventName;
-    private LocalDate eventDate; // Store the full date
+    private Event event;
     private double price;
     private TicketStatus status;
 
-    public Ticket(String eventName, LocalDate eventDate) {
+    public Ticket(Event event, double price) {
         this.ticketId = nextTicketId++;
-        this.eventName = eventName;
-        this.eventDate = eventDate;
+        this.event = event;
         this.price = price;
         this.status = TicketStatus.AVAILABLE;
+
     }
 
     // Getters and setters
@@ -23,12 +22,8 @@ public class Ticket {
         return ticketId;
     }
 
-    public String getEventName() {
-        return eventName;
-    }
-
-    public LocalDate getEventDate() {
-        return eventDate;
+    public Event getEvent() {
+        return event;
     }
 
     public double getPrice() {
@@ -41,5 +36,9 @@ public class Ticket {
 
     public void setStatus(TicketStatus status) {
         this.status = status;
+    }
+
+    public String getEventName() {
+        return "";
     }
 }

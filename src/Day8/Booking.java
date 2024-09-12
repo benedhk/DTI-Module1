@@ -4,13 +4,13 @@ public class Booking {
     private int bookingId;
     private Customer customer;
     private Ticket ticket;
-    private TicketStatus status;
+    private BookingStatus status;
 
     public Booking(Customer customer, Ticket ticket) {
         this.bookingId = nextBookingId++;
         this.customer = customer;
         this.ticket = ticket;
-        this.status = TicketStatus.BOOKED; // Set initial status to BOOKED
+        this.status = BookingStatus.BOOKED; // Set initial status to BOOKED
     }
 
     // Getters and setters
@@ -26,14 +26,13 @@ public class Booking {
         return ticket;
     }
 
-    public TicketStatus getStatus() {
+    public BookingStatus getStatus() {
         return status;
     }
 
     public void confirm() {
         if (ticket.getStatus() == TicketStatus.AVAILABLE) {
-            ticket.setStatus(TicketStatus.CONFIRMED);
-            this.status = TicketStatus.CONFIRMED;
+            this.status = BookingStatus.CONFIRMED;
             // ... (send confirmation email, etc.)
         } else {
             System.out.println("Ticket is not available.");
@@ -41,9 +40,8 @@ public class Booking {
     }
 
     public void cancel() {
-        if (ticket.getStatus() == TicketStatus.BOOKED) {
-            ticket.setStatus(TicketStatus.AVAILABLE);
-            this.status = TicketStatus.CANCELED;
+        if (status == BookingStatus.BOOKED) {
+            this.status = BookingStatus.CANCELED;
             // ... (send cancellation notification, etc.)
         } else {
             System.out.println("Booking cannot be canceled. Ticket is not booked.");

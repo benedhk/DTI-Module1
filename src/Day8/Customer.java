@@ -17,19 +17,6 @@ public class Customer {
         this.bookings = new ArrayList<>();
     }
 
-    // Getters and setters
-    public int getCustomerId() {
-        return customerId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getContactInformation() {
-        return contactInformation;
-    }
-
     public List<Booking> getBookings() {
         return bookings;
     }
