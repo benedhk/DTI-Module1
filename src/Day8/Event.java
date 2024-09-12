@@ -39,24 +39,12 @@ public class Event {
         return eventDate;
     }
 
-    public Venue getVenue() {
-        return venue;
-    }
-
-    public int getTotalTickets() {
-        return totalTickets;
-    }
-
     public int getAvailableTickets() {
         return availableTickets;
     }
 
     public double getTicketPrice() {
         return ticketPrice;
-    }
-
-    public List<Ticket> getTickets() {
-        return tickets;
     }
 
     public Ticket bookTicket() {

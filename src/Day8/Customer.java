@@ -10,7 +10,7 @@ public class Customer {
     private String contactInformation;
     private List<Booking> bookings;
 
-    public Customer(String name, String contactInformation) {
+    public Customer(String name, String contactInformation, int customerId) {
         this.customerId = nextCustomerId++;
         this.name = name;
         this.contactInformation = contactInformation;
@@ -23,5 +23,12 @@ public class Customer {
 
     public void addBooking(Booking booking) {
         bookings.add(booking);
+    }
+
+    public int getCustomerId() {
+        return customerId;
+    }
+    public String getName() {
+        return name;
     }
 }

@@ -10,14 +10,16 @@ public class TicketingSystem {
 
         // Event details
         List<Event> events = new ArrayList<>();
-        events.add(new Event("Concert", LocalDate.of(2024, 10, 15), new Venue("Arena", "123 Concert Street"), 100, 50.0));
+        events.add(new Event("Linkin Dark Asia Tour", LocalDate.of(2024, 10, 12), new Venue("Garden Arena", "Garden Street 44"), 100, 50.0));
+        events.add(new Event("Drake and Friends", LocalDate.of(2024, 12, 8), new Venue("GBK", "Jalan X Jakarta"), 100, 50.0));
+
         // Add more events as needed
 
         // Customer details
         String customerName = "John Doe";
         String contactInfo = "johndoe@example.com";
-
-        Customer customer = new Customer(customerName, contactInfo);
+        int customerId = 555;
+        Customer currentCustomer = new Customer(customerName, contactInfo, customerId);
 
         // Main menu
         boolean showMenu = true;
@@ -52,8 +54,8 @@ public class TicketingSystem {
                             // Book a ticket
                             Ticket ticket = selectedEvent.bookTicket();
                             if (ticket != null) {
-                                Booking booking = new Booking(customer, ticket);
-                                customer.addBooking(booking);
+                                Booking booking = new Booking(currentCustomer, ticket);
+                                currentCustomer.addBooking(booking);
                                 System.out.println("Booking confirmed. Total price: $" + ticket.getPrice());
                             } else {
                                 System.out.println("No available tickets for this event.");
@@ -69,7 +71,7 @@ public class TicketingSystem {
                 case 2:
                     // Confirm booking
                     System.out.println("Your unconfirmed bookings:");
-                    for (Booking booking : customer.getBookings()) {
+                    for (Booking booking : currentCustomer.getBookings()) {
                         if (booking.getStatus() == BookingStatus.BOOKED) {
                             System.out.println("Booking ID: " + booking.getBookingId());
                             System.out.println("Event: " + booking.getTicket().getEvent().getName());
@@ -81,7 +83,7 @@ public class TicketingSystem {
                     int bookingId = scanner.nextInt();
                     scanner.nextLine();
 
-                    Booking bookingToConfirm = findBookingById(customer.getBookings(), bookingId);
+                    Booking bookingToConfirm = findBookingById(currentCustomer.getBookings(), bookingId);
                     if (bookingToConfirm != null && bookingToConfirm.getStatus() == BookingStatus.BOOKED) {
                         System.out.println("Do you want to confirm (1) or cancel (2) this booking?");
                         int confirmOrCancel = scanner.nextInt();
@@ -105,11 +107,13 @@ public class TicketingSystem {
                 case 3:
                     // List booked tickets
                     System.out.println("Your booked tickets:");
-                    for (Booking booking : customer.getBookings()) {
+                    for (Booking booking : currentCustomer.getBookings()) {
                         if (booking.getStatus() == BookingStatus.CONFIRMED) { // Check for confirmed bookings
                             System.out.println("Booking ID: " + booking.getBookingId());
                             System.out.println("Event: " + booking.getTicket().getEventName());
                             System.out.println("Price: $" + booking.getTicket().getPrice());
+                            System.out.println("Customer: " + currentCustomer.getName());
+
                         }
                     }
                     //showMenu = false; // Hide menu after choice

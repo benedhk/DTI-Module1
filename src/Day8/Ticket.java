@@ -1,7 +1,5 @@
 package Day8;
 
-import java.util.ArrayList;
-
 public class Ticket {
     private static int nextTicketId = 1;
     private int ticketId;
