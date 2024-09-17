@@ -9,6 +9,7 @@ public class User {
     private String password;
     private List<LibraryMaterial> borrowedMaterials;
     private List<Double> fines;
+    private List<Transaction> transactions;
 
     public User(String name, String id, String password) {
         this.name = name;
@@ -16,6 +17,9 @@ public class User {
         this.password = password;
         this.borrowedMaterials = new ArrayList<>();
         this.fines = new ArrayList<>();
+    }
+    public List<Transaction> getTransactions() {
+        return transactions; // Assuming you have a List<Transaction> attribute called 'transactions'
     }
 
     public String getName() {

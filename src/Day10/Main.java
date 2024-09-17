@@ -6,9 +6,14 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Library library = new Library();
+        User currentUser = null;
+
+        // Add initial materials
+        library.addMaterial(new Book("Atomic Habits", 2, "James Clear", "9780735283205"));
+        library.addMaterial(new DVD("Inception", 1, 2010, "PG-13"));
+        library.addMaterial(new Magazine("National Geographic", 5, "National Geographic Society", 123));
 
         while (true) {
-            System.out.println("Choose an option:");
             System.out.println("1. Register");
             System.out.println("2. Login");
             System.out.println("3. Exit");
@@ -18,9 +23,8 @@ public class Main {
 
             switch (choice) {
                 case 1:
-                    User newUser = LoginRegister.registerUser(library, scanner);
-                    if (newUser != null) {
-                        currentUser = newUser;
+                    currentUser = LoginRegister.registerUser(library, scanner);
+                    if (currentUser != null) {
                         System.out.println("User registered successfully.");
                     }
                     break;
